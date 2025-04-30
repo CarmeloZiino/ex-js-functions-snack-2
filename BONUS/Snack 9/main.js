@@ -17,11 +17,15 @@ Operazione 3*/
 let operazioni = [
   (a, b) => {
     let results = a + b;
-    console.log(`L'operazione è la somma, i numeri sono ${a} e ${b} e il risultato è ${results}`);
+    console.log(
+      `L'operazione è la somma, i numeri sono ${a} e ${b} e il risultato è ${results}`
+    );
   },
   (a, b) => {
     let results = a - b;
-    console.log(`L'operazione è la sottrazione, i numeri sono ${a} e ${b} e il risultato è ${results}`);
+    console.log(
+      `L'operazione è la sottrazione, i numeri sono ${a} e ${b} e il risultato è ${results}`
+    );
   },
   (a, b) => {
     let results = a * b;
@@ -31,21 +35,43 @@ let operazioni = [
   },
   (a, b) => {
     let results = a / b;
-    console.log(`L'operazione è la divisione, i numeri sono ${a} e ${b} e il risultato è ${results}`);
+    console.log(
+      `L'operazione è la divisione, i numeri sono ${a} e ${b} e il risultato è ${results}`
+    );
   },
 ];
 
+//PRIMO MODO - CON SetIntervale
+// function sequenzaOperazione(array, tempo) {
+//   let i = 0;
+
+//   let start = setInterval(() => {
+//     array[i](5, 6), i++;
+
+//     if (i >= array.length) {
+//       clearInterval(start);
+//       console.log("Non ho più operazioni da eseguire. Fattene una ragione.");
+//     }
+//   }, tempo);
+// }
+
+// sequenzaOperazione(operazioni, 2000);
+
+//SECONDO MODO - SENZA SetInterval
+
 function sequenzaOperazione(array, tempo) {
-  let i = 0;
-
-  let start = setInterval(() => {
-    array[i](5, 6), i++;
-
-    if (i >= array.length) {
-      clearInterval(start);
-      console.log("Non ho più operazioni da eseguire. Fattene una ragione.");
-    }
-  }, tempo);
+  array.forEach((array, index) => {
+    setTimeout(() => {
+      array(8, 23);
+      if (index > array.length) {
+        setTimeout(() => {
+          console.log(
+            "Non ho più operazioni da eseguire. Fattene una ragione."
+          );
+        }, 1000);
+      }
+    }, tempo * index);
+  });
 }
 
-sequenzaOperazione(operazioni, 2000);
+sequenzaOperazione(operazioni, 1000);
